@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class HeaderUI extends Component {
   render() {
@@ -22,14 +22,14 @@ class HeaderUI extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <form className="navbar-form navbar-left">
               <div className="form-group">
-                <input type="text" className="form-control" placeholder="Search" />
+                <input type="text" className="form-control" placeholder="Search"/>
               </div>
-                <button type="submit" className="btn btn-default">Submit</button>
-              </form>
-            </div>
+              <button type="submit" className="btn btn-default">Submit</button>
+            </form>
           </div>
-        </nav>
-        );
+        </div>
+      </nav>
+    );
   }
 }
 
