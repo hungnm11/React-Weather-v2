@@ -1,6 +1,6 @@
 import {REST_API, REST_API_DEMO} from './rest-endpoint';
 
-const env = 'developement';
+const env = 'local';
 let $fetch;
 
 export const METHOD = {
@@ -8,13 +8,21 @@ export const METHOD = {
   post: 'POST'
 };
 
+if (process.env.NODE_ENV === 'production') {
+  console.log('Welcome to production');
+}
+if (process.env.DEBUG) {
+  console.log('Debugging output');
+}
+
 const access_key = '8022563e2a9c56e7e4ffb23f2b1e00f0';
 
 if (env === 'local') {
   $fetch = require('./fetch-demo').default;
 } else if(env === 'developement') {
   $fetch = (endpoint, params, method = METHOD.get) => {
-    const uri = REST_API + endpoint + '&APPID=' + access_key;
+    // const uri = REST_API + endpoint + '&APPID=' + access_key;
+    const uri = REST_API_DEMO;
     console.log('TEST',Object.keys(params).length == 0 ? uri : uri + `&${paramsToQuery(params)}`);
     let requestPromise = null;
 
