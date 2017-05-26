@@ -1,6 +1,6 @@
 import {REST_API, PROXY_URL} from './rest-endpoint';
 
-const env = 'developement';
+const env = 'local';
 let $fetch;
 
 export const METHOD = {
@@ -15,7 +15,7 @@ if (env === 'local') {
 } else if(env === 'developement') {
   $fetch = (endpoint, params, method = METHOD.get) => {
     const uri = PROXY_URL + REST_API + endpoint + '/' + access_key;
-    console.log('TEST',Object.keys(params).length == 0 ? uri : uri + `/${paramsToQuery(params)}`);
+    console.log('DEV',Object.keys(params).length == 0 ? uri : uri + `/${paramsToQuery(params)}`);
     let requestPromise = null;
 
     switch (method) {

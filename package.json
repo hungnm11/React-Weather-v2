@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server",
     "prod": "npm run clean && NODE_ENV=production webpack -p",
     "clean": "rimraf ./dist/*",
-    "api": "json-server --watch ./demo-server/forecast.json --port 3004"
+    "api": "json-server --watch ./demo-server/forecast.json --port 5000"
   },
   "author": "Petr Tichy",
   "license": "ISC",

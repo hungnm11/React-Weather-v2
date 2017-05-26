@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { _getData } from './repo';
 import HeaderUI from './components/weather-header-ui';
+import json from './core/forecast.json';
 
 class WeatherUI extends Component {
   constructor(props) {
@@ -14,11 +15,12 @@ class WeatherUI extends Component {
 
   getData() {
     const params = {
-      latitude: '10.746903,106.676292',
+      // latitude: '10.746903,106.676292',
       // longitude: 106.676292
     };
 
     _getData(params).then(data => {
+      console.log('DATA', data)
       this.setState(
         Object.assign({}, this.state, { res: data })
         );
@@ -35,7 +37,7 @@ class WeatherUI extends Component {
   }
 
   render() {
-    console.log('STATE', this.state);
+    console.log('STATE', this.state, json);
     const data = this.processData();
     return (
       <HeaderUI {...data} />
