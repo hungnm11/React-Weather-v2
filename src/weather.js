@@ -3,6 +3,10 @@ import { _getData } from './repo';
 import HeaderUI from './components/weather-header-ui';
 
 class WeatherUI extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   componentDidMount() {
     this.getData();
@@ -21,9 +25,20 @@ class WeatherUI extends Component {
     });
   }
 
+  processData() {
+    const data = {};
+
+    if (this.state.res) {
+      data.data = this.state.res;
+    }
+    return data;
+  }
+
   render() {
+    console.log('STATE', this.state);
+    const data = this.processData();
     return (
-      <HeaderUI />
+      <HeaderUI {...data} />
     );
   }
 }

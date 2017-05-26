@@ -33,16 +33,7 @@ if (env === 'local') {
         break;
     }
 
-    const fetchData = requestPromise.then(response => {
-        if (response.status !== 200) {
-          console.log(response.status);
-          return;
-        }
-        response.json().then( data => {
-          console.log(data);
-        })
-      }
-    );
+    const fetchData = requestPromise.then(response => response.json());
     return fetchData;
 
   };

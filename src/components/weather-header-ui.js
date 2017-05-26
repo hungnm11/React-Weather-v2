@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 class HeaderUI extends Component {
   render() {
+    console.log('PROPS', this.props);
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
