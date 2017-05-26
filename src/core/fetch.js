@@ -14,7 +14,7 @@ if (env === 'local') {
   $fetch = require('./fetch-demo').default;
 } else if(env === 'developement') {
   $fetch = (endpoint, params, method = METHOD.get) => {
-    const uri = PROXY_URL + REST_API + endpoint + '/' + access_key;
+    const uri = PROXY_URL + REST_API + endpoint + '/' + access_key + '/' + params.location.latitude + ',' + params.location.longitude;
     console.log('DEV',Object.keys(params).length == 0 ? uri : uri + `/${paramsToQuery(params)}`);
     let requestPromise = null;
 
@@ -40,6 +40,9 @@ if (env === 'local') {
 }
 
 function paramsToQuery(params) {
+  if (params.location) {
+    delete params.location;
+  }
   return Object
     .keys(params)
     .map(key => `${params[key]}`)

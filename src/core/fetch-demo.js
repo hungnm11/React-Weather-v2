@@ -2,6 +2,7 @@ import { REST_API_LOCAL } from './rest-endpoint';
 
 function requestJSON(endpoint, params) {
   const localhost = REST_API_LOCAL + endpoint;
+  console.log('LOCAL', localhost);
   let delay = 2000;
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -19,6 +20,10 @@ function requestJSON(endpoint, params) {
 }
 
 function paramsToQuery(params) {
+  if (params.location) {
+    delete params.location;
+  }
+  console.log('PARAMs', params);
   return Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
 }
 
