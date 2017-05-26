@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { _getData } from './repo';
 import HeaderUI from './components/weather-header-ui';
-import json from './core/forecast.json';
 
 class WeatherUI extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: false
+    };
   }
 
   componentDidMount() {
@@ -24,12 +25,12 @@ class WeatherUI extends Component {
       }
     };
 
-    // _getData(params).then(data => {
-    //   console.log('DATA', data)
-    //   this.setState(
-    //     Object.assign({}, this.state, { res: data })
-    //     );
-    // });
+    _getData(params).then(data => {
+      console.log('DATA', data)
+      this.setState(
+        Object.assign({}, this.state, { res: data })
+        );
+    });
   }
 
   processData() {
@@ -37,12 +38,13 @@ class WeatherUI extends Component {
 
     if (this.state.res) {
       data.data = this.state.res;
+      data.loading = true;
     }
     return data;
   }
 
   render() {
-    console.log('STATE', this.state, json);
+    console.log('STATE', this.state);
     const data = this.processData();
     return (
       <HeaderUI {...data} />
