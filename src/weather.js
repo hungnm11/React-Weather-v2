@@ -10,7 +10,8 @@ class WeatherUI extends Component {
 
   getData() {
     const params = {
-      // access_key: '9af2d5555fd753d5b3fccb3a4c7a3341',
+      latitude: '10.746903,106.676292',
+      // longitude: 106.676292
     };
 
     _getData(params).then(data => {

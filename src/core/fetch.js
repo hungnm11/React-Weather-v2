@@ -1,6 +1,6 @@
-import {REST_API, REST_API_DEMO} from './rest-endpoint';
+import {REST_API, PROXY_URL} from './rest-endpoint';
 
-const env = 'local';
+const env = 'developement';
 let $fetch;
 
 export const METHOD = {
@@ -8,22 +8,14 @@ export const METHOD = {
   post: 'POST'
 };
 
-if (process.env.NODE_ENV === 'production') {
-  console.log('Welcome to production');
-}
-if (process.env.DEBUG) {
-  console.log('Debugging output');
-}
-
-const access_key = '8022563e2a9c56e7e4ffb23f2b1e00f0';
+const access_key = 'e1f4fca3b8af6f3daccf60d38fbb93f6';
 
 if (env === 'local') {
   $fetch = require('./fetch-demo').default;
 } else if(env === 'developement') {
   $fetch = (endpoint, params, method = METHOD.get) => {
-    // const uri = REST_API + endpoint + '&APPID=' + access_key;
-    const uri = REST_API_DEMO;
-    console.log('TEST',Object.keys(params).length == 0 ? uri : uri + `&${paramsToQuery(params)}`);
+    const uri = PROXY_URL + REST_API + endpoint + '/' + access_key;
+    console.log('TEST',Object.keys(params).length == 0 ? uri : uri + `/${paramsToQuery(params)}`);
     let requestPromise = null;
 
     switch (method) {
@@ -37,11 +29,20 @@ if (env === 'local') {
       case METHOD.get:
       default:
         // requestPromise = fetch(uri + (params ? `?${paramsToQuery(params)}` : ''));
-        requestPromise = fetch(Object.keys(params).length == 0 ? uri : uri + `&${paramsToQuery(params)}`);
+        requestPromise = fetch(Object.keys(params).length == 0 ? uri : uri + `/${paramsToQuery(params)}`);
         break;
     }
 
-    const fetchData = requestPromise.then(res => res.json());
+    const fetchData = requestPromise.then(response => {
+        if (response.status !== 200) {
+          console.log(response.status);
+          return;
+        }
+        response.json().then( data => {
+          console.log(data);
+        })
+      }
+    );
     return fetchData;
 
   };
@@ -50,8 +51,8 @@ if (env === 'local') {
 function paramsToQuery(params) {
   return Object
     .keys(params)
-    .map(key => `${key}=${params[key]}`)
-    .join('&');
+    .map(key => `${params[key]}`)
+    .join('/');
 }
 
 export default $fetch;
