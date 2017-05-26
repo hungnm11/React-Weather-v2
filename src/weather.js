@@ -14,9 +14,11 @@ class WeatherUI extends Component {
   }
 
   getData() {
+    const latitude = 10.746903;
+    const longitude = 106.676292;
+
     const params = {
-      // latitude: '10.746903,106.676292',
-      // longitude: 106.676292
+      
     };
 
     _getData(params).then(data => {
