@@ -24,12 +24,12 @@ class WeatherUI extends Component {
       }
     };
 
-    _getData(params).then(data => {
-      console.log('DATA', data)
-      this.setState(
-        Object.assign({}, this.state, { res: data })
-        );
-    });
+    // _getData(params).then(data => {
+    //   console.log('DATA', data)
+    //   this.setState(
+    //     Object.assign({}, this.state, { res: data })
+    //     );
+    // });
   }
 
   processData() {
