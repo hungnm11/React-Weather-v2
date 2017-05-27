@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { _getData } from './repo';
-import HeaderUI from './components/weather-header-ui';
+import WeatherContainerUI from './components/weather-ui';
 
 class WeatherUI extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class WeatherUI extends Component {
     console.log('STATE', this.state);
     const data = this.processData();
     return (
-      <HeaderUI {...data} />
+      <WeatherContainerUI {...data} />
     );
   }
 }

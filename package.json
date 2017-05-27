@@ -43,5 +43,8 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
+  },
+  "dependencies": {
+    "google-map-react": "^0.24.0"
   }
 }

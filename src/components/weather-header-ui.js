@@ -32,36 +32,10 @@ class HeaderUI extends Component {
     );
   }
 
-  renderContent() {
-    const props = this.props;
-    let content;
-    if (props.loading) {
-      const timezone = props.data.timezone;
-      content = (
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12 col-sm-12 col-xs-12">
-              <h1>{}</h1>
-            </div>
-            <div className="col-md-12 col-sm-12 col-xs-12">
-              content
-            </div>
-          </div>
-        </div>  
-      );
-    }
-    return (
-      content
-    );
-  }
-
   render() {
     console.log('PROPS', this.props);
     return (
-      <div>
-        {this.renderHeader()}
-        {this.renderContent()}
-      </div>
+        this.renderHeader()
     );
   }
 }
