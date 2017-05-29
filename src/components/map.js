@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class GoogleMap extends Component {
+  constructor() {
+    super();
+  }
 
   componentDidMount() {
     let self = this;
@@ -9,7 +12,7 @@ class GoogleMap extends Component {
       lat: 10.8230989,
       lng: 106.6296638
     };
-    this.loadScriptTag ('https://maps.googleapis.com/maps/api/js?key=AIzaSyBEPnxfEmz5z_X-WxkSijkLX403u0ZQuVI&callback=initMap', () => {
+    this.loadScriptTag ('https://maps.googleapis.com/maps/api/js?key=AIzaSyD9ygKXg2nqxTk9SIbFzPFN7C-yQ9U9_nw', () => {
       self.map = new google.maps.Map(self.refs.map, { center: POSITION,  zoom: 16 });
     });
   }
@@ -19,8 +22,8 @@ class GoogleMap extends Component {
     var head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.async = true;
-    script.defer = true;
+    // script.async = true;
+    // script.defer = true;
     script.src = url;
 
     // Then bind the event to the callback function.
@@ -38,8 +41,6 @@ class GoogleMap extends Component {
       height: 500,
       border: '1px solid #000'
     };
-    const DOM = this.instance;
-    console.log('DOM', DOM);
     
     return (
       <div style={mapStyles} ref="map"></div>
