@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WeatherHeaderUI from './weather-header-ui';
 import WeatherContentUI from './weather-content-ui';
+import WeatherGoogleMap from './map';
 
 class WeatherContainerUI extends Component {
 	render() {
@@ -9,6 +10,7 @@ class WeatherContainerUI extends Component {
 			<div>
 				<WeatherHeaderUI {...props} />
 				<WeatherContentUI {...props} />
+				<WeatherGoogleMap />
 			</div>
 		);
 	}
