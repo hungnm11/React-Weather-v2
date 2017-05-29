@@ -5,6 +5,8 @@ import WeatherContainerUI from './components/weather-ui';
 class WeatherUI extends Component {
   constructor(props) {
     super(props);
+    this.onClickInput = this.onClickInput.bind(this);
+
     this.state = {
       loading: false
     };
@@ -12,6 +14,10 @@ class WeatherUI extends Component {
 
   componentDidMount() {
     this.getData();
+  }
+
+  onClickInput() {
+
   }
 
   getData() {
@@ -47,7 +53,10 @@ class WeatherUI extends Component {
     console.log('STATE', this.state);
     const data = this.processData();
     return (
-      <WeatherContainerUI {...data} />
+      <WeatherContainerUI 
+        {...data}
+        onClickInput={this.onClickInput}
+      />
     );
   }
 }
