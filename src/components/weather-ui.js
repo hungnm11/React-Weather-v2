@@ -6,6 +6,7 @@ import WeatherGoogleMap from './map';
 class WeatherContainerUI extends Component {
 	render() {
 		const props =  this.props;
+		console.log('WeatherContainerUI', props);
 		return (
 			<div>
 				<WeatherHeaderUI {...props} />

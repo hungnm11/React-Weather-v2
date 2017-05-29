@@ -6,9 +6,11 @@ class WeatherUI extends Component {
   constructor(props) {
     super(props);
     this.onClickInput = this.onClickInput.bind(this);
+    this.myCallback = this.myCallback.bind(this);
 
     this.state = {
-      loading: false
+      loading: false,
+      listDataFromChild: null
     };
   }
 
@@ -16,8 +18,13 @@ class WeatherUI extends Component {
     this.getData();
   }
 
-  onClickInput() {
+  onClickInput(e) {
+    console.log('INPUT', e.target.value);
+  }
 
+  myCallback(dataFromChild) {
+    console.log('dataFromChild', dataFromChild);
+    this.setState({ listDataFromChild: dataFromChild });
   }
 
   getData() {
@@ -45,6 +52,7 @@ class WeatherUI extends Component {
     if (this.state.res) {
       data.data = this.state.res;
       data.loading = true;
+      data.listDataFromChild = this.state.listDataFromChild;
     }
     return data;
   }
@@ -56,6 +64,7 @@ class WeatherUI extends Component {
       <WeatherContainerUI 
         {...data}
         onClickInput={this.onClickInput}
+        callbackFromParent={this.myCallback}
       />
     );
   }
