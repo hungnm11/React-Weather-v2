@@ -11,7 +11,7 @@ class WeatherContainerUI extends Component {
 			<div>
 				<WeatherHeaderUI {...props} />
 				<WeatherContentUI {...props} />
-				<WeatherGoogleMap />
+				<WeatherGoogleMap {...props} />
 			</div>
 		);
 	}
