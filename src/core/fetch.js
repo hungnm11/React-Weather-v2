@@ -1,6 +1,6 @@
 import {REST_API, PROXY_URL} from './rest-endpoint';
 
-const env = 'local';
+const env = 'developement';
 let $fetch;
 
 export const METHOD = {
@@ -14,7 +14,7 @@ if (env === 'local') {
   $fetch = require('./fetch-demo').default;
 } else if(env === 'developement') {
   $fetch = (endpoint, params, method = METHOD.get) => {
-    const uri = PROXY_URL + REST_API + endpoint + '/' + access_key + '/' + params.location.latitude + ',' + params.location.longitude;
+    const uri = PROXY_URL + REST_API + endpoint + '/' + access_key + '/' + params.location.lat + ',' + params.location.lng;
     console.log('DEV',Object.keys(params).length == 0 ? uri : uri + `/${paramsToQuery(params)}`);
     let requestPromise = null;
 
