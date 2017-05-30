@@ -31,17 +31,6 @@ class WeatherUI extends Component {
     this.setState({ listDataFromChild: dataFromChild });
   }
 
-  // onHandleChange(event) {
-  //   this.setState({value: event.target.value});
-  // }
-
-  // onHandleSubmit(event) {
-  //   // alert('A name was submitted: ' + this.state.value);
-  //   console.log(event);
-  //   this.props.callbackFromParent(this.state.value);
-  //   event.preventDefault();
-  // }
-
   getData() {
 
     const params = {
@@ -51,14 +40,7 @@ class WeatherUI extends Component {
       }
     };
 
-    // const POSITION = {
-    //   lat: 10.8230989,
-    //   lng: 106.6296638
-    // };
-
     const POSITION = params.location;
-
-    console.log('KKK', params.location);
 
     scriptTag.loadScriptTag ('https://maps.googleapis.com/maps/api/js?key=AIzaSyD9ygKXg2nqxTk9SIbFzPFN7C-yQ9U9_nw', () => {
       self.map = new google.maps.Map(this.mapElement, { center: POSITION,  zoom: 10 });
@@ -71,24 +53,6 @@ class WeatherUI extends Component {
         );
     });
   }
-
-  // loadScriptTag(url, callback) {
-  //    // Adding the script tag to the head as suggested before
-  //   var head = document.getElementsByTagName('head')[0];
-  //   var script = document.createElement('script');
-  //   script.type = 'text/javascript';
-  //   // script.async = true;
-  //   // script.defer = true;
-  //   script.src = url;
-
-  //   // Then bind the event to the callback function.
-  //   // There are several events for cross browser compatibility.
-  //   script.onreadystatechange = callback;
-  //   script.onload = callback;
-
-  //   // Fire the loading
-  //   head.appendChild(script);
-  // }
 
   processData() {
     const data = {};
