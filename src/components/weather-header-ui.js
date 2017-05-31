@@ -18,7 +18,6 @@ class HeaderUI extends Component {
   onHandleSubmit(event) {
     // alert('A name was submitted: ' + this.state.value);
     this.props.callbackFromParent(this.state.value);
-    this.props.getLocationMap(this.state.value)
     event.preventDefault();
   }
 

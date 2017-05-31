@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { _getData } from './repo';
 import WeatherContainerUI from './components/weather-ui';
 import * as scriptTag from './container/container-script-tag';
@@ -32,7 +33,15 @@ class WeatherUI extends Component {
 
       const autocomplete = new google.maps.places.Autocomplete(this.inputElement);
       autocomplete.bindTo('bounds', map);
-
+      
+      var geocoder =  new google.maps.Geocoder();
+      geocoder.geocode( { 'address': 'Saigon' }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          console.log("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng()); 
+        } else {
+          alert("Something got wrong " + status);
+        }
+      });
       // map.controls[google.maps.ControlPosition.TOP_LEFT].push(this.inputElement);
 
       const infowindow = new google.maps.InfoWindow();
@@ -49,10 +58,10 @@ class WeatherUI extends Component {
       google.maps.event.addListener(autocomplete, 'place_changed', function() {
         infowindow.close();
         const place = autocomplete.getPlace();
+
         if (!place.geometry) {
           return;
         }
-        console.log('place.geometry.location ===========', place.geometry.location)
         if (place.geometry.viewport) {
           map.fitBounds(place.geometry.viewport);
         } else {
@@ -114,7 +123,6 @@ class WeatherUI extends Component {
     console.log('STATE', this.state);
     const data = this.processData();
     this.getLocationMap();
-    console.log('REF', this.inputElement);
     return (
       <WeatherContainerUI 
         {...data}
