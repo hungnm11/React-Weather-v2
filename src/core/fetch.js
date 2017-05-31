@@ -1,6 +1,6 @@
 import {REST_API, PROXY_URL} from './rest-endpoint';
 
-const env = 'developement';
+const env = 'local';
 let $fetch;
 
 export const METHOD = {
